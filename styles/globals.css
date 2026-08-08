@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 150 45% 17%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 40 51% 55%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 40 20% 95%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 40 51% 55%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 150 45% 17%;
+    --radius: 0.25rem;
+
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Montserrat', sans-serif;
+
+    --forest: #173F2A;
+    --forest-dark: #0f2a1c;
+    --forest-mid: #1f5238;
+    --gold: #C9A24B;
+    --gold-light: #e0bc72;
+    --gold-pale: rgba(201, 162, 75, 0.12);
+    --cream: #f9f7f4;
+    --cream-warm: #f5f0e8;
+  }
+
+  .dark {
+    --background: 150 45% 6%;
+    --foreground: 40 15% 92%;
+    --card: 150 35% 10%;
+    --card-foreground: 40 15% 92%;
+    --popover: 150 35% 10%;
+    --popover-foreground: 40 15% 92%;
+    --primary: 40 51% 55%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 150 45% 20%;
+    --secondary-foreground: 40 15% 92%;
+    --muted: 150 35% 15%;
+    --muted-foreground: 40 15% 60%;
+    --accent: 150 45% 20%;
+    --accent-foreground: 40 15% 92%;
+    --border: 150 35% 18%;
+    --input: 150 35% 18%;
+    --ring: 40 51% 55%;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono-caps {
+    font-family: var(--font-mono);
+  }
+
+  .section-label {
+    @apply flex items-center gap-3 text-gold font-mono-caps text-[10px] tracking-[0.25em] uppercase mb-4;
+  }
+
+  .section-label::before {
+    content: '';
+    @apply w-10 h-px bg-gold block;
+  }
+
+  .text-display {
+    font-family: var(--font-display);
+    @apply font-semibold leading-[1.08];
+  }
+
+  /* Premium gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #C9A24B 0%, #e0bc72 50%, #C9A24B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Shimmer skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Hide scrollbar */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Premium button */
+  .btn-primary-nep {
+    @apply inline-flex items-center justify-center gap-2 font-mono-caps text-[11px] tracking-[0.2em] uppercase font-semibold
+           px-10 py-4 bg-gold text-forest-dark transition-all duration-300;
+  }
+
+  .btn-primary-nep:hover {
+    @apply bg-gold-light -translate-y-0.5;
+    box-shadow: 0 8px 40px rgba(201, 162, 75, 0.35);
+  }
+
+  .btn-outline-nep {
+    @apply inline-flex items-center justify-center gap-2 font-mono-caps text-[11px] tracking-[0.2em] uppercase font-medium
+           px-10 py-4 border border-white/30 text-white transition-all duration-300;
+  }
+
+  .btn-outline-nep:hover {
+    @apply border-gold text-gold -translate-y-0.5;
+  }
+
+  /* Image zoom container */
+  .img-zoom {
+    overflow: hidden;
+  }
+
+  .img-zoom img {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .img-zoom:hover img {
+    transform: scale(1.06);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #C9A24B;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a07c2e;
+  }
+
+  /* Rich text in sections */
+  .prose-nep p {
+    @apply text-base leading-relaxed text-gray-600 font-light;
+  }
+
+  /* Gold divider */
+  .gold-divider {
+    @apply w-16 h-px bg-gold my-6;
+  }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Nav underline */
+  .nav-link {
+    @apply relative font-mono-caps text-[11px] tracking-[0.18em] uppercase transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-gold transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Card hover lift */
+  .card-hover {
+    @apply transition-all duration-500;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.12);
+  }
+
+  /* Section padding */
+  .section-padding {
+    @apply py-24 md:py-32 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto;
+  }
+}
+
+/* Loader animation */
+@keyframes loaderReveal {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #C9A24B;
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
